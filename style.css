@@ -1,105 +1,158 @@
-body{
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #2d3436;
+:root {
+	--dark: #374151;
+	--darker: #1F2937;
+	--darkest: #111827;
+	--grey: #6B7280;
+	--pink: #EC4899;
+	--purple: #8B5CF6;
+	--light: #EEE;
 }
-.todo-list{
-    width: 350px;
-    font-family: 'Work Sans', sans-serif;
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Fira sans", sans-serif;
 }
-.todo-list header{
-    margin: 0;
-    padding: 1em 0;
-    color: #35c2fa;
-    text-align: center;
-    border-top: 1em solid #35c2fa;
-    border-bottom: 1px solid #eeeeee;
-    border-top-left-radius: 1em;
-    border-top-right-radius: 1em;
-    background-color: #fff;
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	color: #FFF;
+	background-color: #9f7eec;
 }
-.todo-list footer{
-    margin: 0;
-    padding: .7em 0;
-    border-top: 1px solid #eeeeee;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
-    background-color: #fff;
+
+header {
+	padding: 2rem 1rem;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
 }
-.todo-list .do input[type=checkbox]{
-    position: absolute;
-    width: 0;
-    height: 0;
-    visibility: hidden;
+
+header h2{ 
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #111111;
+	margin-bottom: 1rem;
 }
-.todo-list label{
-    position: relative;
-    display: block;
-    padding: .75em 1em;
-    cursor: pointer;
-    background-color: #fff;
-    transition: .3s ease-in-out; 
+
+#new-task-form {
+	display: flex;;
 }
-.todo-list .do label:hover{
-    transform: translateX(-1em);
+
+input, button {
+	appearance: none;
+	border: none;
+	outline: none;
+	background: none;
 }
-.todo-list .do label::before{
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    border: 1px solid #cccccc;
-    border-radius: 30%;
-    vertical-align: middle;
-    margin-right: .5em;
+
+#new-task-input {
+	flex: 1 1 0%;
+	background-color: var(--darker);
+	padding: 1rem;
+	border-radius: 1rem;
+	margin-right: 1rem;
+	color: var(--light);
+	font-size: 1.25rem;
 }
-.todo-list .do label::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 0;
-    background-color: #35c2fa;
-    transition: .3s ease-in-out;
+
+#new-task-input::placeholder {
+	color: var(--grey);
 }
-.todo-list .do label:hover::after{
-    width: 5px;
+
+#new-task-submit {
+	color: var(--pink);
+	font-size: 1.25rem;
+	font-weight: 700;
+	background-image: linear-gradient(to right, var(--pink), var(--purple));
+    background-clip: border-box;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	cursor: pointer;
+	transition: 0.4s;
 }
-.todo-list .do label .fa-check{
-    position: absolute;
-    left: .7em;
-    top: .25em;
-    font-size: 1.7em;
-    color: #35c2fa;
-    opacity: 0;
-    transition: .3s ease-in-out;
+
+#new-task-submit:hover {
+	opacity: 0.8;
 }
-.todo-list .do input[type=checkbox]:checked + label .fa-check{
-    opacity: 1;
+
+#new-task-submit:active {
+	opacity: 0.6;
 }
-.todo-list .do label .label{
-    position: relative;
-    color: #2d3436;
-    transition: .3s ease-in-out;
+
+main {
+	flex: 1 1 0%;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
 }
-.todo-list .do input[type=checkbox]:checked + label .label{
-    color: #aaaaaa;
+
+.task-list {
+	padding: 1rem;
 }
-.todo-list .do label .label::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 100%;
-    top: 50%;
-    height: 1px;
-    background-color: #aaaaaa;
-    transition: .3s ease-in-out;
+
+.task-list h2 {
+	font-size: 1.5rem;
+	font-weight: 300;
+	color: #111111;
+	margin-bottom: 1rem;
 }
-.todo-list .do input[type=checkbox]:checked + label .label::after{
-    right: 0;
+
+#tasks .task {
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--darkest);
+	padding: 1rem;
+	border-radius: 1rem;
+	margin-bottom: 1rem;
+}
+
+.task .content {
+	flex: 1 1 0%;
+}
+
+.task .content .text {
+	color: var(--light);
+	font-size: 1.125rem;
+	width: 100%;
+	display: block;
+	transition: 0.4s;
+}
+
+.task .content .text:not(:read-only) {
+	color: var(--pink);
+}
+
+.task .actions {
+	display: flex;
+	margin: 0 -0.5rem;
+}
+
+.task .actions button {
+	cursor: pointer;
+	margin: 0 0.5rem;
+	font-size: 1.125rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	transition: 0.4s;
+}
+
+.task .actions button:hover {
+	opacity: 0.8;
+}
+
+.task .actions button:active {
+	opacity: 0.6;
+}
+
+.task .actions .edit {
+	background-image: linear-gradient(to right, var(--pink), var(--purple));
+    background-clip: border-box;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.task .actions .delete {
+	color: crimson;
 }
